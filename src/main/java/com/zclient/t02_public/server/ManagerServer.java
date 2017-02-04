@@ -1,4 +1,4 @@
-package com.zclient.t02;
+package com.zclient.t02_public.server;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.I0Itec.zkclient.exception.ZkNoNodeException;
 import org.I0Itec.zkclient.exception.ZkNodeExistsException;
 
 import com.alibaba.fastjson.JSON;
+import com.zclient.t02_public.bean.DBConfig;
 
 public class ManagerServer {
 
@@ -16,7 +17,7 @@ public class ManagerServer {
 	private String commandPath;
 	private String configPath;
 	private ZkClient zkClient;
-	private ServerConfig config;
+	private DBConfig config;
 	// 用于监听zookeeper中servers节点的子节点列表变化
 	private IZkChildListener childListener;
 	// 用于监听zookeeper中command节点的数据变化
@@ -32,7 +33,7 @@ public class ManagerServer {
 	 * @param zkClient
 	 * @param config
 	 */
-	public ManagerServer(String serversPath, String commandPath, String configPath, ZkClient zkClient, ServerConfig config) {
+	public ManagerServer(String serversPath, String commandPath, String configPath, ZkClient zkClient, DBConfig config) {
 		this.serversPath = serversPath;
 		this.commandPath = commandPath;
 		this.zkClient = zkClient;
@@ -80,7 +81,6 @@ public class ManagerServer {
 		// 执行订阅command节点数据变化和servers节点的列表变化
 		zkClient.subscribeDataChanges(commandPath, dataListener);
 		zkClient.subscribeChildChanges(serversPath, childListener);
-
 	}
 
 	/*
