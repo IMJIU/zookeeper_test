@@ -9,10 +9,13 @@ public class Base {
 	static ZkClient zkClient;
 
 	public static void main(String[] args) {
+		System.out.println(create_("/tmp", 1));
+		System.out.println(create_("/tmp", 2));
+		System.out.println(create_("/tmp", 1));
 //		create("/testUserNode");
 //		read();
 //		exists();
-		delete("/testUserNode",true);
+//		delete("/testUserNode",true);
 	}
 
 	private static void connect() {
@@ -41,6 +44,11 @@ public class Base {
 		String path = zkClient.create(p, user, CreateMode.PERSISTENT);
 		// 输出创建节点的路径
 		System.out.println("created path:" + path);
+	}
+	
+	public static String create_(String path,Object data){
+		connect();
+		return zkClient.createEphemeralSequential(path, data);
 	}
 
 	public static void read() {
