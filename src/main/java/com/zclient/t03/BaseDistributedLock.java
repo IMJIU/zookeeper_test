@@ -9,26 +9,28 @@ import java.util.concurrent.TimeUnit;
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.exception.ZkNoNodeException;
+import org.apache.zookeeper.CreateMode;
 
 public class BaseDistributedLock {
 
 	protected final ZkClient client;
-	private final String path;
+	protected final String lockSolutionPath;
 
 	// zookeeper中locker节点的路径
-	private final String basePath;
-	private final String lockName;
+	protected final String basePath;
+	protected final String lockName;
 	private static final Integer MAX_RETRY_COUNT = 10;
-	
-	
+
 	public BaseDistributedLock(ZkClient client, String path, String lockName) {
 		this.client = client;
 		this.basePath = path;
-		this.path = path.concat("/").concat(lockName);
+		if (!client.exists(path)) {
+			client.create(path, null, CreateMode.PERSISTENT);
+		}
+		this.lockSolutionPath = path.concat("/").concat(lockName);
 		this.lockName = lockName;
-
 	}
-	
+
 	private void deleteOurPath(String ourPath) throws Exception {
 		client.delete(ourPath);
 	}
@@ -146,7 +148,6 @@ public class BaseDistributedLock {
 
 	protected void releaseLock(String lockPath) throws Exception {
 		deleteOurPath(lockPath);
-
 	}
 
 	/**
@@ -172,7 +173,7 @@ public class BaseDistributedLock {
 			isDone = true;
 
 			try {
-				ourPath = createLockNode(client, path);
+				ourPath = createLockNode(client, lockSolutionPath);
 				hasTheLock = waitToLock(startMillis, millisToWait, ourPath);
 			} catch (ZkNoNodeException e) {
 				if (retryCount++ < MAX_RETRY_COUNT) {
@@ -188,6 +189,5 @@ public class BaseDistributedLock {
 
 		return null;
 	}
-
 
 }

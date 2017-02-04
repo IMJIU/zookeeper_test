@@ -9,18 +9,24 @@ public class Base {
 	static ZkClient zkClient;
 
 	public static void main(String[] args) {
-		System.out.println(create_EphemeralSequential("/tmp", 1));
-		System.out.println(create_EphemeralSequential("/tmp", 2));
-		System.out.println(create_EphemeralSequential("/tmp", 1));
-//		create("/testUserNode");
-//		read();
-//		exists();
-//		delete("/testUserNode",true);
+		connect();
+		zkClient.create("/lock2", null, CreateMode.PERSISTENT);
+		System.out.println(create_EphemeralSequential("/lock2/Mutex", 1));
+		System.out.println(create_EphemeralSequential("/lock2/Mutex", 2));
+		System.out.println(create_EphemeralSequential("/lock2/Mutex", 1));
+		// create("/testUserNode");
+		// read();
+		// exists();
+		// delete("/testUserNode",true);
 	}
 
 	private static void connect() {
+		if (zkClient != null) {
+			return;
+		}
 		// zk集群的地址
-//		String ZKServers = "192.168.30.164:2181,192.168.30.165:2181,192.168.30.166:2181";
+		// String ZKServers =
+		// "192.168.30.164:2181,192.168.30.165:2181,192.168.30.166:2181";
 		String ZKServers = "localhost:2181";
 
 		/**
@@ -45,8 +51,8 @@ public class Base {
 		// 输出创建节点的路径
 		System.out.println("created path:" + path);
 	}
-	
-	public static String create_EphemeralSequential(String path,Object data){
+
+	public static String create_EphemeralSequential(String path, Object data) {
 		connect();
 		return zkClient.createEphemeralSequential(path, data);
 	}
@@ -60,6 +66,7 @@ public class Base {
 		System.out.println(user.getName());
 		System.out.println(stat);
 	}
+
 	public static void set(String path) {
 		connect();
 
@@ -69,6 +76,7 @@ public class Base {
 		System.out.println(user.getName());
 		System.out.println(stat);
 	}
+
 	public static void exists() {
 		connect();
 
@@ -77,12 +85,12 @@ public class Base {
 		System.out.println(e);
 	}
 
-	public static void delete(String path , boolean recurisive) {
+	public static void delete(String path, boolean recurisive) {
 		connect();
-		if(recurisive){
+		if (recurisive) {
 			// 删除含有子节点的节点
 			System.out.println(zkClient.deleteRecursive(path));
-		}else{
+		} else {
 			// 删除单独一个节点，返回true表示成功
 			System.out.println(zkClient.delete(path));
 		}

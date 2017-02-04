@@ -1,4 +1,4 @@
-package com.zclient.t03;
+package com.zclient.t03.interfaces;
 
 import java.util.concurrent.TimeUnit;
 
