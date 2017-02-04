@@ -9,9 +9,9 @@ public class Base {
 	static ZkClient zkClient;
 
 	public static void main(String[] args) {
-		System.out.println(create_("/tmp", 1));
-		System.out.println(create_("/tmp", 2));
-		System.out.println(create_("/tmp", 1));
+		System.out.println(create_EphemeralSequential("/tmp", 1));
+		System.out.println(create_EphemeralSequential("/tmp", 2));
+		System.out.println(create_EphemeralSequential("/tmp", 1));
 //		create("/testUserNode");
 //		read();
 //		exists();
@@ -46,7 +46,7 @@ public class Base {
 		System.out.println("created path:" + path);
 	}
 	
-	public static String create_(String path,Object data){
+	public static String create_EphemeralSequential(String path,Object data){
 		connect();
 		return zkClient.createEphemeralSequential(path, data);
 	}
