@@ -1,4 +1,4 @@
-package com.zclient.t02_public.server;
+package com.zclient.t02_subscribe.server;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.I0Itec.zkclient.exception.ZkNoNodeException;
 import org.I0Itec.zkclient.exception.ZkNodeExistsException;
 
 import com.alibaba.fastjson.JSON;
-import com.zclient.t02_public.bean.DBConfig;
+import com.zclient.t02_subscribe.bean.DBConfig;
 
 public class ManagerServer {
 

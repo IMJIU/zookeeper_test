@@ -1,4 +1,4 @@
-package com.zclient.t02_public.bean;
+package com.zclient.t02_subscribe.bean;
  
 /** 
  * 用于记录WorkServer（工作服务器）的配置信息 

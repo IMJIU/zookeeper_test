@@ -1,4 +1,4 @@
-package com.zclient.t02_public;
+package com.zclient.t02_subscribe;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,10 +8,10 @@ import java.util.List;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.serialize.BytesPushThroughSerializer;
 
-import com.zclient.t02_public.bean.DBConfig;
-import com.zclient.t02_public.bean.ServerData;
-import com.zclient.t02_public.server.ManagerServer;
-import com.zclient.t02_public.server.WorkServer;
+import com.zclient.t02_subscribe.bean.DBConfig;
+import com.zclient.t02_subscribe.bean.ServerData;
+import com.zclient.t02_subscribe.server.ManagerServer;
+import com.zclient.t02_subscribe.server.WorkServer;
 
 public class SubscribeZkClient {
 

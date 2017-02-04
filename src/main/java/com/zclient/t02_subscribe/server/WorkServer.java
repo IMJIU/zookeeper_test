@@ -1,4 +1,4 @@
-package com.zclient.t02_public.server;
+package com.zclient.t02_subscribe.server;
 import org.I0Itec.zkclient.IZkChildListener;  
 import org.I0Itec.zkclient.IZkDataListener;  
 import org.I0Itec.zkclient.ZkClient;  
@@ -7,8 +7,8 @@ import org.I0Itec.zkclient.exception.ZkNodeExistsException;
   
 import com.alibaba.fastjson.JSON;  
 import com.alibaba.fastjson.JSONObject;
-import com.zclient.t02_public.bean.DBConfig;
-import com.zclient.t02_public.bean.ServerData;  
+import com.zclient.t02_subscribe.bean.DBConfig;
+import com.zclient.t02_subscribe.bean.ServerData;  
   
 /** 
  * 代表工作服务器 
