@@ -1,9 +1,9 @@
-package com.zclient.t03;
+package com.zclient.t03_lock;
 
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.serialize.BytesPushThroughSerializer;
 
-import com.zclient.t03.interfaces.DistributedLock;  
+import com.zclient.t03_lock.interfaces.DistributedLock;  
   
 public class TestDistributedLock {  
       

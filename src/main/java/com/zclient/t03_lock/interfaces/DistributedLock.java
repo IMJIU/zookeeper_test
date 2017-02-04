@@ -1,4 +1,4 @@
-package com.zclient.t03.interfaces;
+package com.zclient.t03_lock.interfaces;
 
 import java.util.concurrent.TimeUnit;
 

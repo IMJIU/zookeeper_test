@@ -1,11 +1,11 @@
-package com.zclient.t03;
+package com.zclient.t03_lock;
 
 import java.util.concurrent.TimeUnit;
 
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.zookeeper.CreateMode;
 
-import com.zclient.t03.interfaces.DistributedLock;
+import com.zclient.t03_lock.interfaces.DistributedLock;
 
 public class SimpleDistributedLock extends BaseDistributedLock implements DistributedLock {
 	private String curLockName = null;
