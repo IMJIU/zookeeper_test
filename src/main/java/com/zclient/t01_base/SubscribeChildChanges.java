@@ -26,7 +26,8 @@ public class SubscribeChildChanges {
 		// zk集群的地址
 //		String ZKServers = "192.168.30.164:2181,192.168.30.165:2181,192.168.30.166:2181";
 		String ZKServers = "localhost:2181";
-		ZkClient zkClient = new ZkClient(ZKServers, 10000, 10000, new SerializableSerializer());
+//		ZkClient zkClient = new ZkClient(ZKServers, 10000, 10000, new SerializableSerializer());
+		ZkClient zkClient = new ZkClient(ZKServers, 10000, 10000);
 		System.out.println("conneted ok!");
 		/**
 		 * "/testUserNode" 监听的节点，可以是现在存在的也可以是不存在的

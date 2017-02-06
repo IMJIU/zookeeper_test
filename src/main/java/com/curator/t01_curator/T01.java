@@ -73,7 +73,11 @@ public class T01 {
 	}
 
 	public void createNode(String path, byte[] data) throws Exception {
-		client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).withACL(Ids.OPEN_ACL_UNSAFE).forPath(path, data);
+		client.create()
+		.creatingParentsIfNeeded()
+		.withMode(CreateMode.PERSISTENT)
+		.withACL(Ids.OPEN_ACL_UNSAFE)
+		.forPath(path, data);
 	}
 	public void readNode(String path) throws Exception {
 		Stat stat = new Stat();
@@ -150,8 +154,7 @@ class DeleteCallBack implements BackgroundCallback {
 	public void processResult(CuratorFramework client, CuratorEvent event) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println(event.getPath() + ",data=" + event.getData());
-		System.out.println("type:" + event.getType());
-		System.out.println("code:" + event.getResultCode());
+		System.out.println("type:" + event.getType()+" code:" + event.getResultCode());
 		// org.apache.zookeeper.KeeperException.Code
 	}
 

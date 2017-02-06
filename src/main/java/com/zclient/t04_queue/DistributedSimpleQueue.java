@@ -59,9 +59,7 @@ public class DistributedSimpleQueue<T> {
 	// 从队列取数据
 	@SuppressWarnings("unchecked")
 	public T poll() throws Exception {
-
 		try {
-
 			List<String> list = zkClient.getChildren(root);
 			if (list.size() == 0) {
 				return null;
@@ -77,7 +75,6 @@ public class DistributedSimpleQueue<T> {
 			 * 将队列中的元素做循环，然后构建完整的路径，在通过这个路径去读取数据
 			 */
 			for (String nodeName : list) {
-
 				String nodeFullPath = root.concat("/").concat(nodeName);
 				try {
 					T node = (T) zkClient.readData(nodeFullPath);
@@ -87,13 +84,10 @@ public class DistributedSimpleQueue<T> {
 					// ignore
 				}
 			}
-
 			return null;
-
 		} catch (Exception e) {
 			throw ExceptionUtil.convertToRuntimeException(e);
 		}
-
 	}
 
 	private String getNodeNumber(String str, String nodeName) {
@@ -103,7 +97,6 @@ public class DistributedSimpleQueue<T> {
 			return index <= str.length() ? str.substring(index) : "";
 		}
 		return str;
-
 	}
 
 }

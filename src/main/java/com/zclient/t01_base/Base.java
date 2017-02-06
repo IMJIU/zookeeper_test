@@ -9,11 +9,12 @@ public class Base {
 	static ZkClient zkClient;
 
 	public static void main(String[] args) {
-		connect();
-		zkClient.create("/lock2", null, CreateMode.PERSISTENT);
-		System.out.println(create_EphemeralSequential("/lock2/Mutex", 1));
-		System.out.println(create_EphemeralSequential("/lock2/Mutex", 2));
-		System.out.println(create_EphemeralSequential("/lock2/Mutex", 1));
+//		connect();
+//		zkClient.create("/lock2", null, CreateMode.PERSISTENT);
+//		System.out.println(create_EphemeralSequential("/lock2/Mutex", 1));
+//		System.out.println(create_EphemeralSequential("/lock2/Mutex", 2));
+//		System.out.println(create_EphemeralSequential("/lock2/Mutex", 1));
+		set("/t01", 12312);
 		// create("/testUserNode");
 		// read();
 		// exists();
@@ -32,8 +33,8 @@ public class Base {
 		/**
 		 * 创建会话 new SerializableSerializer() 创建序列化器接口，用来序列化和反序列化
 		 */
-		zkClient = new ZkClient(ZKServers, 10000, 10000, new SerializableSerializer());
-
+//		zkClient = new ZkClient(ZKServers, 10000, 10000, new SerializableSerializer());
+		zkClient = new ZkClient(ZKServers, 10000, 10000);
 		System.out.println("conneted ok!");
 	}
 
@@ -67,16 +68,10 @@ public class Base {
 		System.out.println(stat);
 	}
 
-	public static void set(String path) {
+	public static void set(String path,Object val) {
 		connect();
-
-		Stat stat = new Stat();
-		// 获取 节点中的对象
-		User user = zkClient.readData(path, stat);
-		System.out.println(user.getName());
-		System.out.println(stat);
+		zkClient.writeData(path, val);
 	}
-
 	public static void exists() {
 		connect();
 
