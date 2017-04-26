@@ -112,7 +112,11 @@ public class TLink {
         }
         return h;
     }
-
+    /**
+     * h->1->2->3->4->5->null
+     * @param s
+     * @return
+     */
     public static TLink build(String s) {
         TLink a = new TLink();
         TLink h = a;
@@ -123,6 +127,11 @@ public class TLink {
         }
         return h;
     }
+    /**
+     * h->5->4->3->2->1->null
+     * @param s
+     * @return
+     */
     public static TLink buildReverse(String s) {
         TLink a = new TLink();
         TLink h = a;
